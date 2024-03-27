@@ -1,4 +1,5 @@
-
+# This function takes a log file and parse it and return a dictionary containing sourceIP, Destination IP and Destination Port.
+# Limitations: This function can only parse the logfile attached to this project. You can modify to suite your need.
 def parse_log(filename, delimiter):
 
     dicList=[]
