@@ -1,6 +1,7 @@
 # This function takes a log file and parse it and return a dictionary containing sourceIP, Destination IP and Destination Port.
 # Limitations: This function can only parse the logfile attached to this project. You can modify to suite your need.
-def parse_log(filename, delimiter):
+
+def parse_log(filename):
 
     dicList=[]
     try: 
@@ -9,7 +10,7 @@ def parse_log(filename, delimiter):
             for logs in logs.readlines():
 
                 logdic= {}
-                data=str(logs).split(delimiter)
+                data=str(logs).split()
                 if(len(data)>=6):
                     logdic["sourceIP"]=data[2]
                     logdic["destIP"]=data[4]
@@ -21,9 +22,9 @@ def parse_log(filename, delimiter):
     except Exception as er:
         print(er)   
 
-def find_offenders(log_file,delimiter):
+def find_offenders(log_file):
     
-    data=parse_log(log_file,delimiter)
+    data=parse_log(log_file)
     sourceIP=[]
     scanners=[]
     scans=[]
@@ -43,7 +44,7 @@ def find_offenders(log_file,delimiter):
                 destPort.append(data[j]["destPort"])
         scans.append({"sourceIP":ip,"uDst":len(destIP), "uPort":len(destPort)})   
     for x in range(len(scans)):
-            if (int(scans[x]["uDst"])>10 or int(scans[x]["uPort"])>10): # a sourceIP targeting more than 10 unique destinationsIP or 10 unique ports 
+            if (int(scans[x]["uDst"])>20 or int(scans[x]["uPort"])>20): # a sourceIP targeting more than 10 unique destinationsIP or 10 unique ports 
                 scanners.append(scans[x]["sourceIP"])
     
     return scanners
@@ -52,7 +53,7 @@ def find_offenders(log_file,delimiter):
 
 if __name__=="__main__":
     
-        offenders=find_offenders("sshlog.txt","\t")
+        offenders=find_offenders("sshlog.txt")
         
         if(len(offenders)>0):
             print("Below are list of offenders (potential scanners)") 
