@@ -1,23 +1,17 @@
 # This function takes a log file and parse it and return a dictionary containing sourceIP, Destination IP and Destination Port.
 # Limitations: This function can only parse the logfile attached to this project. You can modify to suite your need.
-
 def parse_log(filename):
 
     dicList=[]
     try: 
         with open(filename,"r") as logs:
 
-            for logs in logs.readlines():
-
-                logdic= {}
-                data=str(logs).split()
-                if(len(data)>=6):
-                    logdic["sourceIP"]=data[2]
-                    logdic["destIP"]=data[4]
-                    logdic["destPort"]=data[5]
-                    logdic["Message"]=data[6]
-
-                    dicList.append(logdic)
+            fields=["time_stamp","Id","sourceIP","sourcePort","destIP","destPort","message"]
+            for log in logs.readlines():
+                logdict= {}
+                logdict=dict(zip(fields,log.split()))
+               
+                dicList.append(logdict)
         return dicList
     except Exception as er:
         print(er)   
@@ -44,7 +38,7 @@ def find_offenders(log_file):
                 destPort.append(data[j]["destPort"])
         scans.append({"sourceIP":ip,"uDst":len(destIP), "uPort":len(destPort)})   
     for x in range(len(scans)):
-            if (int(scans[x]["uDst"])>20 or int(scans[x]["uPort"])>20): # a sourceIP targeting more than 20 unique destinationsIP or 20 unique ports 
+            if (int(scans[x]["uDst"])>20 or int(scans[x]["uPort"])>20): # a sourceIP targeting more than 10 unique destinationsIP or 10 unique ports 
                 scanners.append(scans[x]["sourceIP"])
     
     return scanners
