@@ -21,9 +21,9 @@ def parse_log(filename, delimiter):
     except Exception as er:
         print(er)   
 
-
-if __name__=="__main__":
-    data=parse_log("sshlog.txt","\t")
+def find_offenders(log_file,delimiter):
+    
+    data=parse_log(log_file,delimeter)
     sourceIP=[]
     scanners=[]
     scans=[]
@@ -43,10 +43,18 @@ if __name__=="__main__":
                 destPort.append(data[j]["destPort"])
         scans.append({"sourceIP":ip,"uDst":len(destIP), "uPort":len(destPort)})   
     for x in range(len(scans)):
-            if (int(scans[x]["uDst"])>5 or int(scans[x]["uPort"])>5):
+            if (int(scans[x]["uDst"])>10 or int(scans[x]["uPort"])>10): # a sourceIP targeting more than 10 unique destinationsIP or 10 unique ports 
                 scanners.append(scans[x]["sourceIP"])
-    print("Below are list of offenders (potential scanners)") 
-    for scanner in scanners:
-       
-        print(scanner)
+    
+    return scanners
+    
+    
 
+if __name__=="__main__":
+    
+        offenders=find_offenders("sshlog.txt","\t")
+        print("Below are list of offenders (potential scanners)") 
+        for offender in offenders:
+       
+            print(offender)
+    
