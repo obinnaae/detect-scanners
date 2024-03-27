@@ -8,7 +8,7 @@ def parse_log(filename):
 
             fields=["time_stamp","Id","sourceIP","sourcePort","destIP","destPort","message"]
             for log in logs.readlines():
-                logdict= {}
+            
                 logdict=dict(zip(fields,log.split()))
                
                 dicList.append(logdict)
