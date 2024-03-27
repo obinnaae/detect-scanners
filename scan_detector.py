@@ -23,7 +23,7 @@ def parse_log(filename, delimiter):
 
 def find_offenders(log_file,delimiter):
     
-    data=parse_log(log_file,delimeter)
+    data=parse_log(log_file,delimiter)
     sourceIP=[]
     scanners=[]
     scans=[]
