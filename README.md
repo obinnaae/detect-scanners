@@ -5,3 +5,7 @@ What is the code about?
 -----------------------
 
 I am responding to the challenge to detect a scanner action or potential abuse given a log from the following network services ssh, ldap, etc. scan_detector.py contains the require code and is limited to the provided log (sshlog.txt) which comes from an ssh server. 
+
+Limitations
+------------
+The log_parser() function can only parse the logfile attached to this project. You can modify to suite your need.
