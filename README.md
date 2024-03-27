@@ -4,7 +4,7 @@
 What is the code about?
 -----------------------
 
-I am responding to the challenge to detect a scanner action or potential abuse given a log from the following network services ssh, ldap, etc. scan_detector.py contains the require code and is limited to the provided log (sshlog.txt) which comes from an ssh server. 
+I am responding to the challenge to detect a scanner action or potential abuse given a log from the following network services ssh, ldap, etc. scan_detector.py contains the required code and is limited to the provided log (sshlog.txt) which comes from the target ssh server. 
 
 Limitations
 ------------
