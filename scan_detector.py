@@ -53,8 +53,13 @@ def find_offenders(log_file,delimiter):
 if __name__=="__main__":
     
         offenders=find_offenders("sshlog.txt","\t")
-        print("Below are list of offenders (potential scanners)") 
-        for offender in offenders:
+        
+        if(len(offenders)>0):
+            print("Below are list of offenders (potential scanners)") 
+            for offender in offenders:
        
-            print(offender)
+                print(offender)
+        else:
+            print("No offenders found, please make sure logs are in the format compatible with this code")
+       
     
