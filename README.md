@@ -8,4 +8,4 @@ I am responding to the challenge to detect a scanner action or potential abuse g
 
 Limitations
 ------------
-The log_parser() function can only parse the logfile attached to this project. You can modify to suite your need.
+The parser_log() function can only parse the logfile attached to this project. You can modify to suite your need.
