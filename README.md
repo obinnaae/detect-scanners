@@ -1,4 +1,5 @@
-##Welcome!##
+Welcome!
+------------
 
 ...and they ask, "where does the lonely mind go?" I say everything great comes from boredom. Convert your boredom into power. Code! Just code. So here I will be trying my hands on some coding challenges. Step through the codes and see all the mess I am making.
 
