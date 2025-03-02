@@ -38,7 +38,7 @@ def find_offenders(log_file):
                 destPort.append(data[j]["destPort"])
         scans.append({"sourceIP":ip,"uDst":len(destIP), "uPort":len(destPort)})   
     for x in range(len(scans)):
-            if (int(scans[x]["uDst"])>20 or int(scans[x]["uPort"])>20): # a sourceIP targeting more than 10 unique destinationsIP or 10 unique ports 
+            if (int(scans[x]["uDst"])>10 or int(scans[x]["uPort"])>10): # a sourceIP targeting more than 10 unique destinationsIP or 10 unique ports 
                 scanners.append(scans[x]["sourceIP"])
     
     return scanners
